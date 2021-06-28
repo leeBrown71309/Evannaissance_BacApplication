@@ -1,6 +1,5 @@
-name: bac_plus_plus
+name: e_bac
 description: A new Flutter project.
-
 
 publish_to:
 
@@ -12,11 +11,38 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+    #pour le splashscreen
+  flutter_native_splash: ^1.2.0
+
+  eva_icons_flutter: ^3.0.0
 
   cupertino_icons: ^1.0.2
+  syncfusion_flutter_pdfviewer: ^19.1.69-beta
   carousel_pro: ^1.0.0
+  path_provider:
+  #pour les requettes passant par des liens http
+  http:
+
+  #pour des sorte de message bull qui dure un certain temps pour afficher un msg comme une pop up
+  fluttertoast: ^8.0.7
+
+  #pour les annimation de texte
+  animated_text_kit: ^4.2.1
+
+  animated_splash_screen: ^1.1.0
+  image_picker: ^0.8.0+3
 
 
+
+#pour le splashscreen
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#1a1a1a"
+  image: assets/logo6.png
+  android: true
+  ios: true
+
+  cupertino_icons: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -27,13 +53,13 @@ flutter:
   uses-material-design: true
 
   assets:
-    - images/
+    - assets/
+    - assets/StudentsImages/
 
-  fonts:
-   - family: Montserrat
-     fonts:
-       - asset: fonts/Montserrat-Black.ttf
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Black.ttf
 
-   - family: Pacifico
-     fonts:
-       - asset: fonts/Pacifico-Regular.ttf
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Pacifico-Regular.ttf
