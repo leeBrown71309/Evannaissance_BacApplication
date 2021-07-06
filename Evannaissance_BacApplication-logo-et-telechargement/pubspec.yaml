@@ -1,0 +1,74 @@
+name: e_bac
+description: A new Flutter project.
+
+publish_to:
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  dio:
+  path_provider:
+  progress_dialog:
+
+  flutter:
+    sdk: flutter
+    #pour le splashscreen
+  flutter_native_splash: ^1.2.0
+
+  eva_icons_flutter: ^3.0.0
+
+  cupertino_icons: ^1.0.2
+  syncfusion_flutter_pdfviewer: ^19.1.69-beta
+  carousel_pro: ^1.0.0
+
+  #pour les requettes passant par des liens http
+  http:
+
+  #pour des sorte de message bull qui dure un certain temps pour afficher un msg comme une pop up
+  fluttertoast: ^8.0.7
+
+  #pour les annimation de texte
+  animated_text_kit: ^4.2.1
+
+  animated_splash_screen: ^1.1.0
+  image_picker: ^0.8.0+3
+  shared_preferences: ^2.0.6
+  grouped_list: ^4.0.0
+  permission_handler: ^8.1.2
+  percent_indicator: ^3.0.1
+  native_pdf_view: ^4.1.0
+
+
+
+#pour le splashscreen
+flutter_native_splash:
+  color: "#ffffff"
+  color_dark: "#1a1a1a"
+  image: assets/logo6.png
+  android: true
+  ios: true
+
+  cupertino_icons: ^1.0.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/StudentsImages/
+
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Black.ttf
+
+    - family: Pacifico
+      fonts:
+        - asset: fonts/Pacifico-Regular.ttf
