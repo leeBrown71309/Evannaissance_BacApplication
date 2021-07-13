@@ -9,7 +9,9 @@ import 'ListEmployes.dart';
 
 class ModifyEmpProjet extends StatefulWidget {
   var idpe;
-  ModifyEmpProjet(this.idpe);
+  var nom;
+  var titre;
+  ModifyEmpProjet(this.idpe,this.nom,this.titre);
 
   @override
   _ModifyEmpProjetState createState() => _ModifyEmpProjetState();
@@ -44,10 +46,10 @@ class _ModifyEmpProjetState extends State<ModifyEmpProjet> {
   TextEditingController idpController = new TextEditingController();
 
 
-  void goToNextPage() {
+  void goToNextPage(var nom,var titre) {
     Navigator.push(context, MaterialPageRoute(
         builder: (builder){
-          return ListEmp();
+          return ListEmp(nom,titre);
         }));
   }
 
@@ -75,7 +77,7 @@ class _ModifyEmpProjetState extends State<ModifyEmpProjet> {
     var url = Uri.parse("http://192.168.1.16/workstation/flutter%20app%20auth/modifyempprojet.php");
     var response = await http.post(url,
         body: {
-          "idp" : idpController.text,
+          //"idp" : idpController.text,
           "id" : widget.idpe,
           "nome" : nomController.text,
           "matricule" : matriculeController.text,
@@ -88,7 +90,7 @@ class _ModifyEmpProjetState extends State<ModifyEmpProjet> {
     );
     var data = jsonDecode(response.body);
     if(data == "Success"){
-      goToNextPage();
+      goToNextPage(widget.nom,widget.titre);
     }else{
       //permet d'afficher une pop up
       showDialog(context: context,
@@ -403,37 +405,37 @@ class _ModifyEmpProjetState extends State<ModifyEmpProjet> {
                                 ),
                               ),
                               SizedBox(height: 10.0),
-                              Text(
-                                'ID du projet : ',
-                                style: kLabelStyle,
-                              ),
-                              SizedBox(height: 10.0),
-                              Container(
-                                alignment: Alignment.topLeft,
-                                decoration: kBoxDecorationStyle,
-                                height: 60.0,
-                                child: TextFormField(
-                                  controller: idpController,
-                                  //change l'etat du champ email
-                                  onChanged: (value) => setState(() => idp = value),
-                                  validator: (value) =>value!.isEmpty ?
-                                  "Entrer l'ID de ce projet" : null,
-                                  keyboardType: TextInputType.number,
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 20,
-                                  ),
-                                  decoration: InputDecoration(
-                                    border: InputBorder.none,
-                                    contentPadding: EdgeInsets.only(top: 14.0),
-                                    prefixIcon: Icon(
-                                      Icons.confirmation_number_outlined,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                              ),
+                              // Text(
+                              //   'ID du projet : ',
+                              //   style: kLabelStyle,
+                              // ),
+                              // SizedBox(height: 10.0),
+                              // Container(
+                              //   alignment: Alignment.topLeft,
+                              //   decoration: kBoxDecorationStyle,
+                              //   height: 60.0,
+                              //   child: TextFormField(
+                              //     controller: idpController,
+                              //     //change l'etat du champ email
+                              //     onChanged: (value) => setState(() => idp = value),
+                              //     validator: (value) =>value!.isEmpty ?
+                              //     "Entrer l'ID de ce projet" : null,
+                              //     keyboardType: TextInputType.number,
+                              //     style: TextStyle(
+                              //       color: Colors.white,
+                              //       fontFamily: 'Montserrat',
+                              //       fontSize: 20,
+                              //     ),
+                              //     decoration: InputDecoration(
+                              //       border: InputBorder.none,
+                              //       contentPadding: EdgeInsets.only(top: 14.0),
+                              //       prefixIcon: Icon(
+                              //         Icons.confirmation_number_outlined,
+                              //         color: Colors.white,
+                              //       ),
+                              //     ),
+                              //   ),
+                              // ),
                               SizedBox(height: 10,),
 
                             ]

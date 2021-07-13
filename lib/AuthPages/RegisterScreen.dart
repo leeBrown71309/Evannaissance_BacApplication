@@ -9,28 +9,6 @@ import 'dart:convert';
 
 
 
-
-import 'dart:convert';
-import 'package:ergo/MainPages/Accueil.dart';
-import 'package:ergo/MainPages/Admin/AuthAdmin.dart';
-import 'package:ergo/MainPages/Secr%C3%A9taire/CreateProject.dart';
-import 'package:ergo/utilities/constants.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-import 'package:http/http.dart' as http;
-import 'package:http/http.dart';
-
-import 'RegisterScreen.dart';
-
-
-
-
-
-
-
 class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
@@ -126,44 +104,12 @@ class _FormConnexionState extends State<FormConnexion> {
 
 
 
-  void goToNextPage() {
-    //permet de naviguer d'une page à une autre avec une animation
-    Navigator.push(context, PageRouteBuilder(
-        transitionDuration: Duration(milliseconds: 500),
-        transitionsBuilder: (context, animation, animationTime, child) {
-          animation= CurvedAnimation(parent: animation,
-              curve: Curves.elasticOut);
-          return ScaleTransition(scale: animation,
-            alignment: Alignment.center,
-            child: child,
-          );
-        },
-        pageBuilder:
-            (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
-          return Accueil(valuen : nom,titre : t);
-        }
-    ));
-  }
+ 
 
 
 
 
-  Widget ShowSuccesDialog(){
-    return  AlertDialog(
-      title: Text('Réussi',
-        style: TextStyle(
-            color: Colors.green),),
-      actions: [
-        FlatButton(onPressed: () => goToNextPage(),
-            child: Text("Continuer",
-              style: TextStyle(
-                  fontSize: 20),))
-      ],
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30)
-      ),
-    );
-  }
+
 
   Widget ShowErrorDialog(){
     return  AlertDialog(
@@ -299,10 +245,7 @@ class _FormConnexionState extends State<FormConnexion> {
     var data = jsonDecode(response.body);
     if(data == "Success"){
       print("je suis laa");
-      //permet d'afficher une pop up
-      showDialog(context: context,
-        builder: (_) => ShowSuccesDialog(),
-        barrierDismissible: false,);
+      Navigator.pop(context);
     }else{
       //permet d'afficher une pop up
       showDialog(context: context,
@@ -622,7 +565,7 @@ class _FormConnexionState extends State<FormConnexion> {
                 //si le champ email n'est pas correcte le boutton est invalide sinn...
                 onPressed: !emailValidator.hasMatch(email)? null :() {
                   if(_formkey.currentState!.validate()){
-
+                    print('je suis la');
                     register(t);
                   }
                 },

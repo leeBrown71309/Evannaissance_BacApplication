@@ -485,43 +485,34 @@ class _FormConnexionState extends State<FormConnexion> {
                 ),
               ),
             ),
-            SizedBox(height: 10,),
-            Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    GestureDetector(
-                      onTap: () => Navigator.push(
-                          context, MaterialPageRoute(
-                          builder: (context){
-                            return AuthAdmin();})),
-                      child: RichText(
-                        text: TextSpan(
-                          children: [
-                            TextSpan(
-                              text:  "Admin ? ",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                            TextSpan(
-                              text: ' Cliquer ici',
-                              style: TextStyle(
-                                color: Colors.orange,
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
-                )
-            )
-          ],
+            Container(
+              padding: EdgeInsets.symmetric(vertical: 10.0),
+              width: double.infinity,
+              child: RaisedButton(
+                elevation: 5.0,
+                //si le champ email n'est pas correcte le boutton est invalide sinn...
+                onPressed: ()=>  Navigator.push(
+                    context, MaterialPageRoute(
+                    builder: (context){
+                      return AuthAdmin();})),
+                padding: EdgeInsets.only(top: 20,left: 10,right: 10,bottom: 20),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                color: Colors.white,
+                child: Text(
+                  'ADMIN',
+                  style: TextStyle(
+                    color: Colors.orange,
+                    letterSpacing: 1.5,
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Montserrat',
+                  ),
+                ),
+              ),
+            ),
+                     ],
         ),
       ),
     );

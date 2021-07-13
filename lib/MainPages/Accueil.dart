@@ -7,6 +7,8 @@ import 'package:flutter/services.dart';
 
 import '../test.dart';
 import 'Admin/ListEmployes.dart';
+import 'Chef projet/ListProjetChef.dart';
+import 'Directeur/AddEmpProjet.dart';
 import 'Directeur/ListProjetD.dart';
 import 'Directeur/ModifyProjetD.dart';
 import 'Secrétaire/CreateProject.dart';
@@ -29,8 +31,23 @@ class Accueil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    void stay (){
-      Navigator.pop(context);
+    Widget ShowErrorDialog(){
+      return  AlertDialog(
+        title: Text('Erreur',
+          style: TextStyle(
+              color: Colors.red),),
+        content: Text("Votre fonction ne vous permet pas l'accès à cette zone"),
+        actions: [
+          FlatButton(onPressed: () =>  Navigator.pop(context, 'Cancel'),
+
+              child: Text("Quitter",
+                style: TextStyle(
+                    fontSize: 20),))
+        ],
+        shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30)
+        ),
+      );
     }
 
     void gotToCreateProjectS (){
@@ -45,14 +62,26 @@ class Accueil extends StatelessWidget {
       }));
     }
 
-    void gotToListEMP (){
+    void gotToListEMP (var nom, var titre){
       Navigator.push(context, MaterialPageRoute(builder: (builder){
-        return ListEmp();//ListEmp();
+        return ListEmp(nom,titre);//ListEmp();
       }));
     }
-    void gotToModifyProjetD (){
+    void gotToModifyProjetD (var nom, var titre){
       Navigator.push(context, MaterialPageRoute(builder: (builder){
-        return ListProjetD();//ListEmp();
+        return ListProjetD(nom,titre);//ListEmp();
+      }));
+    }
+
+    void gotToAddChef (var nom, var titre){
+      Navigator.push(context, MaterialPageRoute(builder: (builder){
+        return AddEmpProjet(nom,titre);//ListEmp();
+      }));
+    }
+
+    void gotToListProjetC (var nom, var titre){
+      Navigator.push(context, MaterialPageRoute(builder: (builder){
+        return ListProjetC(nom,titre);//ListEmp();
       }));
     }
 
@@ -84,8 +113,13 @@ class Accueil extends StatelessWidget {
                  case "Admin":
                    gotToAddEMP();
                    break;
+                 case "Directeur":
+                   gotToAddChef(valuen,titre);
+                   break;
                  default:
-                   stay();
+                   showDialog(context: context,
+                     builder: (_) => ShowErrorDialog(),
+                     barrierDismissible: false,);
 
                }
               }
@@ -267,10 +301,15 @@ class Accueil extends StatelessWidget {
                               );
                               break;
                             case "Directeur":
-                              gotToModifyProjetD();
+                              gotToModifyProjetD(valuen,titre);
+                              break;
+                            case "Chef projet":
+                              gotToListProjetC(valuen,titre);
                               break;
                             default:
-                              stay();
+                              showDialog(context: context,
+                                builder: (_) => ShowErrorDialog(),
+                                barrierDismissible: false,);
 
                           }
                         }
@@ -346,8 +385,92 @@ class Accueil extends StatelessWidget {
                         ),),
                       onTap: () {
                         if(titre == "Admin" || titre == "admin"){
-                          gotToListEMP();
-                        }else{stay();}
+                          gotToListEMP(valuen,titre);
+                        }else{
+                          showDialog(context: context,
+                            builder: (_) => ShowErrorDialog(),
+                            barrierDismissible: false,);
+                        }
+                      },
+
+                    ),
+                  ),
+
+
+                  Divider(
+                    color: Colors.white,
+                  ),
+                  SizedBox(height: 5,),
+                  Container(
+                    padding: EdgeInsets.only(top: 10, bottom: 10, left: 18),
+                    width: 300,
+                    height: 45,
+                    color: Colors.black54,
+                    child: Row(
+                      //mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Icon(Icons.workspaces_outline, color: Colors.white,),
+                        SizedBox(width: 5,),
+                        Text("Espaces Comptable",
+                          style: TextStyle(
+                              color: Colors.white, fontSize: 20
+                          ),),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ListTile(
+                      tileColor: Colors.black87,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      leading: Icon(
+                        Icons.edit_attributes_outlined, color: Colors.blue,),
+                      title: Text("Modifier et facturer",
+                        style: TextStyle(
+                            fontSize: 18, color: Colors.blue
+                        ),),
+                      onTap: () {
+                        switch(titre){
+                          case "Comptable":
+                            print("comptable");
+                            break;
+                          default:
+                            showDialog(context: context,
+                              builder: (_) => ShowErrorDialog(),
+                              barrierDismissible: false,);
+                        }
+
+                      },
+
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(5.0),
+                    child: ListTile(
+                      tileColor: Colors.black87,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      leading: Icon(
+                        Icons.search_rounded, color: Colors.blue,),
+                      title: Text("Recherche",
+                        style: TextStyle(
+                            fontSize: 18, color: Colors.blue
+                        ),),
+                      onTap: () {
+                        switch(titre){
+                          case "Comptable":
+                            print("comptable");
+                            break;
+                          default:
+                            showDialog(context: context,
+                              builder: (_) => ShowErrorDialog(),
+                              barrierDismissible: false,);
+
+                        }
+
                       },
 
                     ),

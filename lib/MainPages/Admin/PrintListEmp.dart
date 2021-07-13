@@ -1,8 +1,9 @@
+import 'package:ergo/AuthPages/RegisterScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'AddEmpProjet.dart';
+import '../Directeur/AddEmpProjet.dart';
 import 'ListEmployes.dart';
 import 'ModifyEmpProjet.dart';
 
@@ -11,7 +12,9 @@ import 'ModifyEmpProjet.dart';
 
 class PrintListEmp extends StatefulWidget {
   var projet;
-  PrintListEmp(this.projet);
+  var nom;
+  var titre;
+  PrintListEmp(this.projet,this.nom,this.titre);
 
   @override
   _PrintListEmpState createState() => _PrintListEmpState();
@@ -59,7 +62,7 @@ class _PrintListEmpState extends State<PrintListEmp> {
 
       Navigator.push(context, MaterialPageRoute(
           builder: (builder){
-            return ListEmp();
+            return ListEmp(widget.nom,widget.titre);
           }));
 
 
@@ -135,14 +138,9 @@ class _PrintListEmpState extends State<PrintListEmp> {
 
   }
 
-  void gotToAddEmpProjet (var a){
-    Navigator.push(context, MaterialPageRoute(builder: (builder){
-     return AddEmpProjet(a);
-    }));
-  }
   void gotToModifyEmpProjet (var a){
     Navigator.push(context, MaterialPageRoute(builder: (builder){
-      return ModifyEmpProjet(a);
+      return ModifyEmpProjet(a,widget.nom,widget.titre);
     }));
   }
 
@@ -234,8 +232,7 @@ class _PrintListEmpState extends State<PrintListEmp> {
                     SizedBox(height: 10,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Text("Ajouter, Modofier, Supprimer un employé \n"
-                          "                         dans un projet",
+                      child: Text("Ajouter, Modifier, Supprimer un employé ",
                         style: TextStyle(fontSize: 20),),
                     ),
                     SizedBox(height: 10,),
@@ -252,7 +249,10 @@ class _PrintListEmpState extends State<PrintListEmp> {
                                   fontSize: 20),),
                             ],
                           ),
-                          onPressed: () => gotToAddEmpProjet(widget.projet["id"]),
+                          onPressed: () => Navigator.push(context, MaterialPageRoute(
+                              builder: (builder){
+                                return SignUpScreen();
+                              })),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)
                           ),

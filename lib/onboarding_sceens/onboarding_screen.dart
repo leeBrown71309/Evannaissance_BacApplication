@@ -114,7 +114,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       children: <Widget>[
                                         Ink.image(
                                           image: AssetImage(
-                                              "assets/StudentsImages/etudiants11.jpg"),
+                                              "assets/g4.jpg"),
                                           fit: BoxFit.cover,
                                           height: 250,
                                           child: InkWell(
@@ -131,7 +131,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 20.0),
                             Text(
-                              'Bienvenue à vous\nfuture diplômés...',
+                              'Bienvenue à vous',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
@@ -140,8 +140,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              "Aviez-vous déjà eu le besoin de consulter des anciennes épreuves "
-                                  "d'un examen afin de vous exercer ??? Si oui vous êtes au bon endroit",
+                              "",
                               style: TextStyle(
                                 color: Colors.white54,
                                 fontFamily: 'Montserrat',
@@ -172,7 +171,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       children: <Widget>[
                                         Ink.image(
                                           image: AssetImage(
-                                              "assets/StudentsImages/etudiants4.jpg"),
+                                              "assets/g1.jpg"),
                                           fit: BoxFit.cover,
                                           height: 250,
                                           child: InkWell(
@@ -189,7 +188,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 20.0),
                             Text(
-                              'BAC++..',
+                              'ErgoGen...',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
@@ -198,7 +197,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              "Vous permet de preparer votre Baccalauréat dans de bonne conditions... ",
+                              "",
                               style: TextStyle(
                                 color: Colors.white54,
                                 fontFamily: 'Montserrat',
@@ -229,7 +228,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       children: <Widget>[
                                         Ink.image(
                                           image: AssetImage(
-                                              "assets/StudentsImages/etudiants3.jpg"),
+                                              "assets/g2.jpg"),
                                           fit: BoxFit.cover,
                                           height: 250,
                                           child: InkWell(
@@ -246,7 +245,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 20.0),
                             Text(
-                              'Regroupant...',
+                              'Gestion de projets',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
@@ -255,7 +254,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              "Une énorme bilbiothèque numérique, portable et structuré d'épreuves mis à votre disposition... ",
+                              "",
                               style: TextStyle(
                                 color: Colors.white54,
                                 fontFamily: 'Montserrat',
@@ -286,7 +285,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                                       children: <Widget>[
                                         Ink.image(
                                           image: AssetImage(
-                                              "assets/StudentsImages/etudiants12.jpg"),
+                                            "assets/g3.jpg"),
                                           fit: BoxFit.cover,
                                           height: 250,
                                           child: InkWell(
@@ -303,7 +302,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 20.0),
                             Text(
-                              'Vous permettant...',
+                              '',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'Montserrat',
@@ -312,8 +311,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             ),
                             SizedBox(height: 15.0),
                             Text(
-                              "D'avoir accès à ces données plus rapidement, mais qui propose aussi la possibilité"
-                                  " à un élève dans le besoin de... ",
+                              "",
                               style: TextStyle(
                                 color: Colors.white54,
                                 fontFamily: 'Montserrat',
@@ -373,7 +371,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           ? Container(
             padding: EdgeInsets.only(left: 25,right: 25,top: 10,bottom: 10),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -393,21 +391,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 child: Text("Login",
                 style: TextStyle(fontSize: 20,color: Colors.orange),)
       ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                    primary: Colors.white,
-                    elevation: 7,
-                  onPrimary: Colors.black87,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                    ),
-                    padding: EdgeInsets.only(left: 20,right: 20,top: 10,bottom: 10),
-                ),
-                onPressed: () => Navigator.push(context, MaterialPageRoute(
-                    builder: (builder){
-                      return SignUpScreen();
-                    })),
-                child: Text("Register", style: TextStyle(fontSize: 20,color: Colors.orange),))
           ],
         ),
       )

@@ -10,7 +10,9 @@ import 'PrintListEmp.dart';
 
 
 class ListEmp extends StatefulWidget {
-
+  var nom;
+  var titre;
+  ListEmp(this.nom,this.titre);
 
   @override
   _ListEmpState createState() => _ListEmpState();
@@ -46,7 +48,7 @@ class _ListEmpState extends State<ListEmp> {
   }
   void gotToPrintListEmp (var a){
     Navigator.push(context, MaterialPageRoute(builder: (builder){
-      return PrintListEmp(a);
+      return PrintListEmp(a,widget.nom,widget.titre);
     }));
   }
 
@@ -60,6 +62,14 @@ class _ListEmpState extends State<ListEmp> {
           style: TextStyle(
               fontSize: 20, color: Colors.orange
           ),),
+        leading: IconButton(
+          onPressed: ()=>Navigator.push(context, MaterialPageRoute(
+              builder: (builder){
+                return Accueil(valuen:widget.nom,titre: widget.titre);
+              })),
+          icon: Icon(Icons.arrow_back,color: Colors.black,),
+        ),
+
         backgroundColor: Colors.white,
 
       ),

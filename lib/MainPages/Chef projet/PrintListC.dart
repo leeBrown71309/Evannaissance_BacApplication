@@ -2,27 +2,43 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-import 'AddEmpProjet.dart';
-import 'ModifyProjetD.dart';
 
 
 
-
-class PrintProjetinfoD extends StatefulWidget {
+class PrintProjetinfoC extends StatefulWidget {
   var projet;
-  PrintProjetinfoD(this.projet);
+  PrintProjetinfoC(this.projet);
 
   @override
-  _PrintProjetinfoDState createState() => _PrintProjetinfoDState();
+  _PrintProjetinfoCState createState() => _PrintProjetinfoCState();
 }
 
-class _PrintProjetinfoDState extends State<PrintProjetinfoD> {
+class _PrintProjetinfoCState extends State<PrintProjetinfoC> {
+
+  Widget ShowErrorDialog(){
+    return  AlertDialog(
+      title: Text('Erreur',
+        style: TextStyle(
+            color: Colors.red),),
+      actions: [
+        FlatButton(onPressed: () =>  Navigator.pop(context, 'Cancel'),
+
+            child: Text("Essaie encore",
+              style: TextStyle(
+                  fontSize: 20),))
+      ],
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30)
+      ),
+    );
+  }
+
 
   List ProjetList = [];
   bool isLoading = true;
 
   PrintProjet() async {
-    var url = Uri.parse("http://192.168.1.16/workstation/flutter%20app%20auth/getprojetsd.php");
+    var url = Uri.parse("http://192.168.1.16/workstation/flutter%20app%20auth/getprojetc.php");
     var response = await http.get(url);
     if(response.statusCode == 200){
       setState(() {
@@ -39,13 +55,34 @@ class _PrintProjetinfoDState extends State<PrintProjetinfoD> {
     PrintProjet();
   }
 
-  void gotToModifyProjetD (var a){
-    Navigator.push(context, MaterialPageRoute(builder: (builder){
-      return ModifyProjetD(a);
-    }));
-  }
+  // void gotToModifyProjetD (var a){
+  //   Navigator.push(context, MaterialPageRoute(builder: (builder){
+  //     return ModifyProjetD(a);
+  //   }));
+  // }
+  bool ifchef = false;
+  Future<void> Get(var chef)async {
+      var url = Uri.parse("http://192.168.1.16/workstation/flutter%20app%20auth/ifchef.php");
+      var response = await http.post(url,
+          body: {
+            //"idp" : idpController.text,
+            "chef" : chef,
+          }
+      );
+      var data = jsonDecode(response.body);
+      if(data){
+        ifchef = true;
+        print("decomposer ce projet");
+
+      }else{
+        //permet d'afficher une pop up
+        showDialog(context: context,
+          builder: (_) => ShowErrorDialog(),
+          barrierDismissible: false,);
 
 
+      }
+    }
 
 
 
@@ -142,11 +179,11 @@ class _PrintProjetinfoDState extends State<PrintProjetinfoD> {
                           child: Column(
                             children: [
                               Icon(Icons.add,size: 35,color: Colors.white,),
-                              Text("Modifier",style: TextStyle(color: Colors.white,
+                              Text("Ajouter une phase",style: TextStyle(color: Colors.white,
                                   fontSize: 20),),
                             ],
                           ),
-                          onPressed: () =>gotToModifyProjetD(widget.projet["id"]),
+                          onPressed: ()=> Get(widget.projet['chef']), //gotToModifyProjetD(widget.projet["id"]),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)
                           ),

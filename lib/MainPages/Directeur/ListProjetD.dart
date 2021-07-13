@@ -12,7 +12,9 @@ import 'PrintProjetD.dart';
 
 
 class ListProjetD extends StatefulWidget {
-
+var nom;
+var titre;
+ListProjetD(this.nom,this.titre);
 
   @override
   _ListProjetDState createState() => _ListProjetDState();
@@ -67,7 +69,10 @@ class _ListProjetDState extends State<ListProjetD> {
           ),),
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.push(context,
+              MaterialPageRoute(builder: (builder){
+                return Accueil(valuen: widget.nom,titre: widget.titre);
+              })),
           icon: Icon(Icons.arrow_back,color: Colors.black,),
         ),
       ),

@@ -10,6 +10,8 @@ import 'ListProjetD.dart';
 
 class ModifyProjetD extends StatefulWidget {
   var idpro;
+  var nom;
+  var titre;
   ModifyProjetD(this.idpro);
 
   @override
@@ -28,6 +30,7 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
   String fin= '';
   String prix= '';
   String doc= '';
+  String chef= '';
 
 
 
@@ -42,12 +45,13 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
   TextEditingController idController =  TextEditingController();
   TextEditingController prixController =  TextEditingController();
   TextEditingController docController =  TextEditingController();
+  TextEditingController chefController =  TextEditingController();
 
 
   void goToNextPage() {
     Navigator.push(context, MaterialPageRoute(
         builder: (builder){
-          return ListProjetD();
+          return ListProjetD(widget.nom,widget.titre);
         }));
   }
 
@@ -71,7 +75,7 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
     );
   }
 
-  Future<void> ModifyProjet()async {
+  Future <void> ModifyProjet() async {
     var url = Uri.parse("http://192.168.1.16/workstation/flutter%20app%20auth/modifyprojetd.php");
     var response = await http.post(url,
         body: {
@@ -84,10 +88,13 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
           "fin" : finController.text,
           "montant" : prixController.text,
           "document" : docController.text,
+          //"montant" : prixController.text,
+          //"document" : docController.text,
         }
     );
     var data = jsonDecode(response.body);
     if(data == "Success"){
+
       goToNextPage();
     }else{
       //permet d'afficher une pop up
@@ -116,7 +123,9 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
           actions: [
             IconButton(
               icon: Icon(Icons.check,color: Colors.orange,),
-              onPressed: () => ModifyProjet(),
+              onPressed: () {
+                print("je suis la ooghhhhh");
+                ModifyProjet();}
 
             )
           ],
@@ -378,7 +387,7 @@ class _ModifyProjetDState extends State<ModifyProjetD> {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 10.0),
+                               SizedBox(height: 10.0),
                               Text(
                                 'Documents  : ',
                                 style: kLabelStyleProjet,
